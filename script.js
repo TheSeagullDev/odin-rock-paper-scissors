@@ -23,19 +23,19 @@ function playRound(humanChoice, computerChoice)
 {
     if(humanChoice === computerChoice)
     {
-        console.log(`Tie! Both selected ${humanChoice}.`);
+        result.textContent = (`Tie! Both selected ${humanChoice}.`);
         return 0;
     }
     else if(humanChoice === "rock")
     {
         if(computerChoice === "paper")
         {
-            console.log("You lose! Paper beats Rock!");
+            result.textContent = ("You lose! Paper beats rock!");
             return 2;
         }
         else
         {
-            console.log("You win! Rock beats Scissors!");
+            result.textContent = ("You win! Rock beats scissors!");
             return 1;
         }
     }
@@ -43,12 +43,12 @@ function playRound(humanChoice, computerChoice)
     {
         if(computerChoice === "rock")
         {
-            console.log("You win! Paper beats Rock!");
+            result.textContent = ("You win! Paper beats rock!");
             return 1;
         }
         else
         {
-            console.log("You lose! Scissors beats Paper!");
+            result.textContent = ("You lose! Scissors beats paper!");
             return 2;
         }
     }
@@ -56,12 +56,12 @@ function playRound(humanChoice, computerChoice)
     {
         if(computerChoice === "paper")
             {
-                console.log("You lose! Paper beats Rock!");
-                return 2;
+                result.textContent = ("You win! Scissors beats paper!");
+                return 1;
             }
             else
             {
-                console.log("You win! Rock beats Scissors!");
+                result.textContent = ("You lose! Rock beats Scissors!");
                 return 1;
             }
     }
@@ -90,16 +90,25 @@ function playGame()
     }
     if(humanScore > computerScore)
     {
-        console.log(`You win! The score was ${humanScore}-${computerScore}`)
+        result.textContent = (`You win! The score was ${humanScore}-${computerScore}`)
     }
     else if (computerScore > humanScore)
     {
-        console.log(`You lose! The score was ${computerScore}-${humanScore}`)
+        result.textContent = (`You lose! The score was ${computerScore}-${humanScore}`)
     }
     else
     {
-        console.log(`Tie! The score was ${computerScore}-${humanScore}`)
+        result.textContent = (`Tie! The score was ${computerScore}-${humanScore}`)
     }
 }
 
-playGame()
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const humanChoice = button.id;
+        playRound(humanChoice, getComputerChoice());
+    })
+})
+
+const result = document.querySelector("#results");
