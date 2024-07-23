@@ -56,7 +56,7 @@ function playRound(humanChoice, computerChoice)
             else
             {
                 result.textContent = ("You lose! Rock beats Scissors!");
-                return 1;
+                return 2;
             }
     }
 }
